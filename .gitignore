@@ -1,0 +1,29 @@
+# MySQL Workbench backup files
+*.mwb.bak
+*.mwb.beforefix
+
+# MySQL logs and temporary files
+*.log
+*.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# MySQL data directory (if accidentally included)
+data/
+mysql-data/
+
