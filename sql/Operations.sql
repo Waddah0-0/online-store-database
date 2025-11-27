@@ -66,3 +66,42 @@ LEFT JOIN Product_Review R ON P.Product_ID = R.Product_ID
 GROUP BY P.Product_ID, P.Product_Name
 HAVING Number_Of_Reviews > 0;
 
+SELECT 
+    P.Product_ID,
+    P.Product_Name,
+    P.Stock_Quantity,
+    C.Category_Name,
+    S.Company_Name AS Supplier,
+    S.Contact_Name,
+    S.Phone AS Supplier_Phone
+FROM Product P
+JOIN Category C ON P.Category_ID = C.Category_ID
+JOIN Supplier S ON P.Supplier_ID = S.Supplier_ID
+WHERE P.Stock_Quantity < 10
+ORDER BY P.Stock_Quantity ASC;
+
+SELECT 
+    P.Product_ID,
+    P.Product_Name,
+    SUM(OD.Quantity) AS Total_Sold,
+    SUM(OD.Quantity * OD.Price_At_Purchase) AS Total_Revenue,
+    COUNT(DISTINCT OD.Order_ID) AS Number_Of_Orders
+FROM Product P
+JOIN Order_Details OD ON P.Product_ID = OD.Product_ID
+GROUP BY P.Product_ID, P.Product_Name
+ORDER BY Total_Sold DESC
+LIMIT 10;
+
+SELECT 
+    P.Product_ID,
+    P.Product_Name,
+    P.Unit_Price,
+    P.Stock_Quantity,
+    C.Category_Name,
+    S.Company_Name AS Supplier
+FROM Product P
+JOIN Category C ON P.Category_ID = C.Category_ID
+JOIN Supplier S ON P.Supplier_ID = S.Supplier_ID
+LEFT JOIN Order_Details OD ON P.Product_ID = OD.Product_ID
+WHERE OD.Product_ID IS NULL;
+
