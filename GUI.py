@@ -100,4 +100,4 @@ elif menu == "Analytics (Queries)":
                     st.bar_chart(df.set_index(df.columns[0]))
                 conn.close()
             except Exception as e:
-                st.error(f"Error running query: {e}")
+                st.error(f"Error running query: {e}") 
